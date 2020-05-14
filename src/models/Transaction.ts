@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import category from './Category';
+import Category from './Category';
 
 @Entity('transactions')
 class Transaction {
@@ -24,8 +24,11 @@ class Transaction {
   @Column('decimal')
   value: number;
 
-  @ManyToOne(() => category)
+  @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @Column()
   category_id: string;
 
   @CreateDateColumn()
